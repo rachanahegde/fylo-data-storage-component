@@ -15,11 +15,6 @@ $white: white;
 $font-size: 14px;
 $font-family: 'Raleway', sans-serif;
 
-// Mixins
-@mixin for-mobile {
-    @media (max-width: 375px) { @content; }
-}
-
 // General Styles
 body {
     background-color: $very-dark-blue;
@@ -60,8 +55,19 @@ img {
     }
 }
 
+.desktop-background {
+    @media (max-width: 460px) { 
+        display: none;
+    }
+}
+
 .mobile-background {
     display: none;
+
+    @media (max-width: 460px) { 
+        display: block;
+        min-height: 100vh;
+    }
 }
 
 .storage-component {
@@ -71,12 +77,18 @@ img {
     justify-self: center;
 	align-self: center;
     display: grid;
-    grid-template-columns: 400px 1fr;
-    grid-gap: 30px;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+
+    @media (max-width: 1050px) { 
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
 }
 
 .first-component {
-    height: 150px;
+    height: 130px;
+    gap: 25px;
     grid-column: 1 / 2;
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -84,6 +96,10 @@ img {
     background: $dark-blue;
     padding: 40px 65px 40px 40px;
     border-radius: 10px 100px 10px 10px;
+
+    @media (max-width: 1050px) { 
+        grid-column: 1 / -1;
+    }
 }
 
 .top-half {
@@ -128,10 +144,22 @@ img {
     align-self: end;
     align-items: center;
     position: relative;
+
+    @media (max-width: 1050px) { 
+        grid-column: 1 / -1;
+        width: 300px;
+    }
+
+    @media (max-width: 460px) { 
+        width: 250px;
+    }
 }
 
 .storage-info {
     grid-row: 1 / 2;
+    @media (max-width: 460px) { 
+        text-align: center;
+    }
 }
 
 .slidecontainer {
@@ -191,6 +219,18 @@ img {
         border: 20px solid;
         border-color: $white $white transparent transparent;
         right: 0px;
+    }
+
+    @media (max-width: 1050px) { 
+        ::after {
+            border: none;
+        }
+        left: 100px;
+        top: 130px;
+    }
+
+    @media (max-width: 460px) { 
+        left: 80px;
     }
 }
 
